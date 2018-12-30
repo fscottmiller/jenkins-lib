@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(string branch, string credentials, string repository) {
+def call(String branch, String credentials, String repository) {
     checkout([
         $class: 'GitSCM',
         branches: [[name: "*/${branch}"]],
