@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(String repo, String language) {
+def call() {
     echo "Preparing environment..."
 	//checkout repo
 
