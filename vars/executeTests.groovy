@@ -1,8 +1,8 @@
 #!/usr/bin/env groovy
 
-def call() {
+def call(String tags) {
     echo "Executing tests..."
-    bat "dir"
+    bat "cucumber --tags ${tags}"
 	// def configData = readYaml(file: 'test_dir/jenkins-config.yml')
 	// def envTag = projectEnvironment
 	// def functionTags = configData['environments'][projectEnvironment]['stages']
