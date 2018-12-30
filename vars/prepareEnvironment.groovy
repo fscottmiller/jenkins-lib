@@ -1,17 +1,10 @@
 #!/usr/bin/env groovy
 
-def call() {
+def call(String repo, String language) {
     echo "Preparing environment..."
-	// checkout([
-         // $class: 'GitSCM',
-         // branches: [[name: "*/${projectBranch}"]],
-         // doGenerateSubmoduleConfigurations: false,
-         // extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'test_dir']],
-         // userRemoteConfigs: [[credentialsId: 'GitConnector_QATInc', url: "${projectRepository}"]]
-    // ])
-	// def configData = readYaml(file: 'test_dir/jenkins-config.yml')
-	// def projectLanguage = configData['language']
-	// def runner = null
+	//checkout repo
+
+    //
 	// switch(projectLanguage) {
 		// case 'ruby':
 			// runner = load('lib_groovy/ruby.groovy')
