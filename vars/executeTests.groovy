@@ -2,6 +2,7 @@
 
 def call() {
     echo "Executing tests..."
+    bat "dir"
 	// def configData = readYaml(file: 'test_dir/jenkins-config.yml')
 	// def envTag = projectEnvironment
 	// def functionTags = configData['environments'][projectEnvironment]['stages']
