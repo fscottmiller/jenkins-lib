@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(String branch, String repository) {
+def call(String repository, String branch) {
     echo "${branch}"
     echo "${repository}"
     checkout([
