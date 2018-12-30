@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(String projectName, String projectRepository, String projectBranch, String projectEnvironment) {
+def call() {
     echo "Preparing environment..."
 	// checkout([
          // $class: 'GitSCM',

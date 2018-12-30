@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(String projectName, String projectRepository, String projectBranch, String projectEnvironment) {
+def call() {
     echo "Executing tests..."
 	// def configData = readYaml(file: 'test_dir/jenkins-config.yml')
 	// def envTag = projectEnvironment
