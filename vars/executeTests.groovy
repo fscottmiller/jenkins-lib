@@ -15,6 +15,9 @@ def call(language, fnTags, env) {
     
     //convert string back to list
     fnTags = Eval.me("fnTags")
+    fnTags = fnTags[1..-2].tokenize(',')
+    
+    
     echo fnTags
 	
 	//for each functional tag specified in jenkins-config.yml for given environemnt
