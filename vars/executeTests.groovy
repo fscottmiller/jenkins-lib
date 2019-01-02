@@ -13,7 +13,7 @@ def call(String language, Arraylist fnTags, String env) {
 	for(functionTag in functionTags) {
 		//creates a jenkins stage
 		stage(functionTag) {
-			tagging logic for the stage
+			//tagging logic for the stage
 			def tagLogic = "@${envTag} and @${functionTag} and not @${invalidTag}"
 			def isFailed = false
 			//list of feature files to be run
