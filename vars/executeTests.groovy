@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(String language, String fnTags, String env) {
+def call(language, fnTags, env) {
     echo "Executing tests..."
     
     // fnTags = [fnTags]
@@ -9,6 +9,9 @@ def call(String language, String fnTags, String env) {
 	def functionTags = fnTags
 	def nodeLabel = language
 	def invalidTag = 'ToDo'
+    
+    echo "printing fnTags"
+    echo fnTags
 	
 	//for each functional tag specified in jenkins-config.yml for given environemnt
 	for(functionTag in functionTags) {
