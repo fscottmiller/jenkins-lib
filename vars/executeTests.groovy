@@ -15,7 +15,8 @@ def call(language, fnTags, env) {
     
     //convert string back to list
     // fnTags = Eval.me("fnTags")
-    fnTags = fnTags[1..-2].tokenize(',')
+    fnTags = fnTags[1..-2]
+    echo fnTags
     
     
     echo fnTags
