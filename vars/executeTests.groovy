@@ -2,7 +2,6 @@
 
 def call(String language, String fnTags, String env) {
     echo "Executing tests..."
-    bat "cucumber --tags ${tags}"
     
 	def envTag = env
 	def functionTags = fnTags
