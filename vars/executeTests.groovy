@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(String language, Arraylist fnTags, String env) {
+def call(String language, String fnTags, String env) {
     echo "Executing tests..."
     bat "cucumber --tags ${tags}"
     
