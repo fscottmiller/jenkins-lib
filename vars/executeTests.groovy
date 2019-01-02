@@ -12,6 +12,10 @@ def call(language, fnTags, env) {
     
     echo "printing fnTags"
     echo fnTags
+    
+    //convert string back to list
+    fnTags = eval.me(fnTags)
+    echo fnTags
 	
 	//for each functional tag specified in jenkins-config.yml for given environemnt
 	for(functionTag in functionTags) {
