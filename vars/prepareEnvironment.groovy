@@ -2,7 +2,7 @@
 
 def call(language) {
     echo "Preparing environment..."
-	switch(projectLanguage) {
+	switch(language) {
 		case 'ruby':
 			echo 'Provisioning ruby env...'
 			break
