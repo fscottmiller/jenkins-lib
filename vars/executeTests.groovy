@@ -9,17 +9,10 @@ def call(language, fnTags, env) {
 	def nodeLabel = language
 	def invalidTag = 'ToDo'
     
-    echo "printing fnTags"
-    echo fnTags
     
     //convert string back to list
-    // fnTags = Eval.me("fnTags")
-    fnTags = fnTags[1..-2].toString()tokenize(',')
-    echo fnTags
-    
-    
-    echo fnTags
-    
+    fnTags = fnTags[1..-2].tokenize(',')
+        
     def functionTags = fnTags
 
 	
