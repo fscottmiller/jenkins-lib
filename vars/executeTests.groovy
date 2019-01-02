@@ -3,7 +3,7 @@
 def call(String language, String fnTags, String env) {
     echo "Executing tests..."
     
-    fnTags = [fnTags]
+    // fnTags = [fnTags]
     
 	def envTag = env
 	def functionTags = fnTags
