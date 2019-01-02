@@ -6,7 +6,6 @@ def call(language, fnTags, env) {
     // fnTags = [fnTags]
     
 	def envTag = env
-	def functionTags = fnTags
 	def nodeLabel = language
 	def invalidTag = 'ToDo'
     
@@ -20,6 +19,9 @@ def call(language, fnTags, env) {
     
     
     echo fnTags
+    
+    def functionTags = fnTags
+
 	
 	//for each functional tag specified in jenkins-config.yml for given environemnt
 	for(functionTag in functionTags) {
