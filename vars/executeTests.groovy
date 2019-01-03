@@ -23,7 +23,7 @@ def call(language, tags, env) {
 			
 			//populates the features list with the dry-run results
 			node(nodeLabel) {
-				def dryrunSuccess = sh(script: "cucumber --dry-run --tags '${tagLogic}' --format json --out dry-run.json", returnStdout: true)
+				def dryrunSuccess = bat(script: "cucumber --dry-run --tags '${tagLogic}' --format json --out dry-run.json", returnStdout: true)
 				for(feature in readJSON(file: 'dry-run.json')) {
 					features << feature.uri
 				}
@@ -42,7 +42,7 @@ def call(language, tags, env) {
 					run on 'nodelabel'
 					node(nodeLabel) {
 						//runs the cucumber tests and stores results
-						def buildSuccess = sh(script: "cucumber --tags '${tagLogic}' '${featureFile}' --format json --out 'reports/${runName}.json' TEST_ENV=${projectEnvironment}", returnStatus: true) == 0
+						def buildSuccess = bat(script: "cucumber --tags '${tagLogic}' '${featureFile}' --format json --out 'reports/${runName}.json' TEST_ENV=${projectEnvironment}", returnStatus: true) == 0
 						
 						//preparing report JSON for ELK consumption
 						try {
@@ -50,7 +50,7 @@ def call(language, tags, env) {
 							reportJSON[0]['name'] += " [Tags: ${tagLogic}]"
 							reportJSON[0]['timestamp'] = new Date().toTimestamp().toString()
 							writeJSON(file: "reports/${runName}.json", json: reportJSON)
-							sh("echo.>>reports/${runName}.json")
+							bat("echo.>>reports/${runName}.json")
 							//copies report JSON back to master
 							archiveArtifacts(artifacts: 'reports/*.json')
 						} catch(java.io.FileNotFoundException e1) {
