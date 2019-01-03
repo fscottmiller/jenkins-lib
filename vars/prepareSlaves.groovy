@@ -24,7 +24,11 @@ def call() {
 					 		 // step takes place, this will prepare the same executor twice
 					node(computerName) {
 						gitClone(params.Repository, params.Branch)
-						sh('mkdir -p reports')
+						if (isUnix()) {
+							sh('mkdir -p reports')
+						} else {
+							bat('mkdir reports')
+						}
 					}
 				}
 			}
