@@ -5,7 +5,6 @@ class JenkinsConfig implements Serializable {
 	
 	public JenkinsConfig(Map dataMap) {
 		this.dataMap = dataMap
-		config = this
 	}
 	
 	public static String getLanguage() {
