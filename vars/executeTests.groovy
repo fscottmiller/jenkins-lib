@@ -23,6 +23,7 @@ def call(language, tags, env) {
 			
 			//populates the features list with the dry-run results
 			node(nodeLabel) {
+				bat "dir"
 				def dryrunSuccess = bat(script: "cucumber --dry-run --tags '${tagLogic}' --format json --out dry-run.json", returnStdout: true)
 				for(feature in readJSON(file: 'dry-run.json')) {
 					features << feature.uri
