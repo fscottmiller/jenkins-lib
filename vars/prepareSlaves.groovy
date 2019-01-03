@@ -2,8 +2,7 @@
 
 def call() {
     echo "Preparing slaves..."
-	def configData = readYaml(file: 'config.yml')
-	def nodeLabel = configData['language']
+	def nodeLabel = JenkinsConfig.getLanguage()
 	def builds = [:]
 	def onlineCounter = 0
 	// for each jenkins slave
@@ -22,12 +21,7 @@ def call() {
 							 // 2+ executors, and pipeline A's test job is not finished before this
 					 		 // step takes place, this will prepare the same executor twice
 					node(computerName) {
-						checkout([
-							 $class: 'GitSCM',
-							 branches: [[name: "*/${projectBranch}"]],
-							 doGenerateSubmoduleConfigurations: false,
-							 userRemoteConfigs: [[credentialsId: 'GitConnector_QATInc', url: "${projectRepository}"]]
-						])
+						gitClone(params.Repository, params.Branch)
 						sh('mkdir -p reports')
 					}
 				}
