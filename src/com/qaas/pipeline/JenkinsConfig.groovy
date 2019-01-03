@@ -1,7 +1,5 @@
 package com.qaas.pipeline
 
-import codehaus.groovy.
-
 class JenkinsConfig implements Serializable {
 	public static JenkinsConfig config
 	
