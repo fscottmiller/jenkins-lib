@@ -1,7 +1,7 @@
 package com.qaas.pipeline
 
 class JenkinsConfig implements Serializable {
-	public static JenkinsConfig config
+	public JenkinsConfig config
 	
 	protected Map dataMap = [:]
 	
