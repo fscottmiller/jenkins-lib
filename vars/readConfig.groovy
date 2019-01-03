@@ -1,3 +1,3 @@
 def call() {
-  JenkinsConfig.new("jenkins-config.yml")
+  com.qaas.pipeline.JenkinsConfig.new("jenkins-config.yml")
 }

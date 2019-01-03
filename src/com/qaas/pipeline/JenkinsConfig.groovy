@@ -2,10 +2,10 @@ package com.qaas.pipeline
 
 import codehaus.groovy.
 
-class JenkinsConfig {
+class JenkinsConfig implements Serializable {
 	public static JenkinsConfig config
 	
-	Map dataMap = [:]
+	protected Map dataMap = [:]
 	
 	public JenkinsConfig(String fileLocation) {
 		dataMap = readYaml(file: fileLocation)
