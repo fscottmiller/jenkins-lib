@@ -1,8 +1,7 @@
 package com.qaas.pipeline
 
 class JenkinsConfig implements Serializable {
-	public static JenkinsConfig config
-	protected Map dataMap = [:]
+	protected static Map dataMap = [:]
 	
 	public JenkinsConfig(Map dataMap) {
 		this.dataMap = dataMap
@@ -10,18 +9,18 @@ class JenkinsConfig implements Serializable {
 	}
 	
 	public static String getLanguage() {
-		return config['language']
+		return dataMap['language']
 	}
 	
 	public static String getEnvironmentType(String environment) {
-		return config['environments'][environment]
+		return dataMap['environments'][environment]
 	}
 	
 	public static String[] getEnvironmentStages(String environment) {
-		return config['environments'][environment]
+		return dataMap['environments'][environment]
 	}
 	
 	public static String[] getEmailList() {
-		return config['email']
+		return dataMap['email']
 	}
 }
