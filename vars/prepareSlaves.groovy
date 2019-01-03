@@ -2,7 +2,7 @@
 
 def call() {
     echo "Preparing slaves..."
-	def configData = readYaml(file: 'test_dir/jenkins-config.yml')
+	def configData = readYaml(file: 'jenkins-config.yml')
 	def nodeLabel = configData['language']
 	def builds = [:]
 	def onlineCounter = 0
