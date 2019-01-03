@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 
+import com.qaas.pipeline.JenkinsConfig
+
 def call() {
     echo "Preparing slaves..."
 	def nodeLabel = JenkinsConfig.getLanguage()
