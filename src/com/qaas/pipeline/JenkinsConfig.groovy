@@ -17,7 +17,7 @@ class JenkinsConfig implements Serializable {
 		return config['environments'][environment]
 	}
 	
-	public static String[] getEnvironmentStages(Sring environment) {
+	public static String[] getEnvironmentStages(String environment) {
 		return config['environments'][environment]
 	}
 	
