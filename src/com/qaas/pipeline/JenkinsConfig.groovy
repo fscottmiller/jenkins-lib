@@ -5,8 +5,8 @@ class JenkinsConfig implements Serializable {
 	
 	protected Map dataMap = [:]
 	
-	public JenkinsConfig(String fileLocation) {
-		dataMap = readYaml(file: fileLocation)
+	public JenkinsConfig(Map dataMap) {
+		this.dataMap = dataMap
 		config = this
 	}
 }
