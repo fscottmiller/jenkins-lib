@@ -1,27 +1,20 @@
 #!/usr/bin/env groovy
 
-def call(language, fnTags, env) {
-    echo "Executing tests..."
-    
-    // fnTags = [fnTags]
-    
+def call(language, tags, env) {      
 	def envTag = env
 	def nodeLabel = language
 	def invalidTag = 'ToDo'
     
-    
     //convert string back to list
-    fnTags = fnTags[1..-2].tokenize(',')
-        
-    def functionTags = fnTags
-
+    // there's gotta be a cleaner way to do this
+    def fnTags = tags[1..-2].tokenize(',')
 	
 	//for each functional tag specified in jenkins-config.yml for given environemnt
-	for(functionTag in functionTags) {
+	for(tag in fnTags) {
 		//creates a jenkins stage
-		stage(functionTag) {
+		stage(tag) {
 			//tagging logic for the stage
-			def tagLogic = "@${envTag} and @${functionTag} and not @${invalidTag}"
+			def tagLogic = "@${envTag} and @${tag} and not @${invalidTag}"
 			def isFailed = false
 			//list of feature files to be run
 			def features = []
@@ -42,7 +35,7 @@ def call(language, fnTags, env) {
 				def featureFile = feature
 				def featureName = feature.substring(feature.lastIndexOf('/') + 1, feature.lastIndexOf('.'))
 				//unique name for feature
-				def runName = "${featureName}-${projectEnvironment}-${functionTag}"
+				def runName = "${featureName}-${projectEnvironment}-${tag}"
 				
 				//populates the builds hash with a build for each feature
 				builds[featureName] = {
