@@ -1,6 +1,6 @@
 //import com.qaas.pipeline
 
 def call() {
-	com.qaas.pipeline.JenkinsConfig.new("jenkins-config.yml")
+	new com.qaas.pipeline.JenkinsConfig("jenkins-config.yml")
 	println("Hello, World!")
 }
