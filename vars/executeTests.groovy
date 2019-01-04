@@ -24,19 +24,15 @@ def call(environment) {
 			node(language) {
 				switch(language) {
 					case 'ruby':
-						echo 'Provisioning ruby env...'
 						rubyDryRun(tagLogic)
 						break
 					case 'junit':
-						echo 'Provisioning java env...'
 						javaDryRun(tagLogic)
 						break
 					case 'specflow':
-						echo 'Provisioning c# env...'
 						cSharpDryRun(tagLogic)
 						break
 					case 'python':
-						echo 'Provisioning python env...'
 						pythonDryRun(tagLogic)
 						break
 					default:
@@ -59,6 +55,7 @@ def call(environment) {
 				//populates the builds hash with a build for each feature
 				builds[featureName] = {
 					node(language) {
+						println("Running on an agent")
 						//runs the cucumber tests and stores results
 						def buildSuccess
 						switch(language) {
@@ -117,6 +114,7 @@ def call(environment) {
 }
 
 def rubyDryRun(tagLogic) {
+	println("Dryrun")
 	withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
 		if (isUnix()) {
 			sh(script: "cucumber --dry-run --tags '${tagLogic}' --format json --out dry-run.json")
@@ -127,6 +125,7 @@ def rubyDryRun(tagLogic) {
 }
 
 def rubyExecute(tagLogic, featureFile, runName, environment) {
+	println("Execute")
 	withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
 		if (isUnix()) {
 			return sh(script: "cucumber --tags '${tagLogic}' '${featureFile}' --format json --out 'reports/${runName}.json' TEST_ENV=${projectEnvironment}", returnStatus: true) == 0
