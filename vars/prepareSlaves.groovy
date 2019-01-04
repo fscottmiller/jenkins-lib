@@ -2,17 +2,16 @@
 
 import com.qaas.pipeline.JenkinsConfig
 
-def call() {
+def call(repository, branch) {
     echo "Preparing slaves..."
-	def nodeLabel = JenkinsConfig.getLanguage()
+	def language = JenkinsConfig.getLanguage()
 	def builds = [:]
 	def onlineCounter = 0
 	// for each jenkins slave
 	for(computer in Jenkins.instance.computers) {
-		// if computer has label matching 'nodeLabel'
-		if (computer.isOnline() && computer.getAssignedLabels().findAll({it.name == nodeLabel}).size() > 0) {
+		// if computer has label matching 'language'
+		if (computer.isOnline() && computer.getAssignedLabels().findAll({it.name == language}).size() > 0) {
 			onlineCounter++
-				
 			// for each executor in slave
 			for (int executorNum = 0; executorNum < computer.getNumExecutors(); executorNum++) {
 				def computerName = computer.getName()
@@ -24,11 +23,32 @@ def call() {
 					 		 // step takes place, this will prepare the same executor twice
 					node(computerName) {
 						deleteDir()
-						gitClone(params.Repository, params.Branch)
+						gitClone(repository, branch)
 						if (isUnix()) {
 							sh('mkdir -p reports')
 						} else {
 							bat('mkdir reports')
+						}
+						switch(language) {
+							case 'ruby':
+								echo 'Provisioning ruby env...'
+								rubyPrepare()
+								break
+							case 'junit':
+								echo 'Provisioning java env...'
+								javaPrepare()
+								break
+							case 'specflow':
+								echo 'Provisioning c# env...'
+								cSharpPrepare()
+								break
+							case 'python':
+								echo 'Provisioning c# env...'
+								pythonPrepare()
+								break
+							default:
+								error('Project language from jenkins-config.yml is not yet supported')
+								break
 						}
 					}
 				}
@@ -38,6 +58,30 @@ def call() {
 	if (onlineCounter > 0) {
 		parallel(builds)
 	} else {
-		error("No online nodes matching label: [${nodeLabel}]")
+		error("No online nodes matching label: [${language}]")
+	}
+}
+
+def rubyPrepare() {
+	withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
+		// To-Do
+	}
+}
+
+def javaPrepare() {
+	withEnv(['Path+JAVA=C:/Ruby25-x64/bin']) {
+		// To-Do
+	}
+}
+
+def cSharpPrepare() {
+	withEnv(['Path+CSHARP=C:/Ruby25-x64/bin']) {
+		// To-Do
+	}
+}
+
+def pythonPrepare() {
+	withEnv(['Path+PYTHON=C:/Ruby25-x64/bin']) {
+		// To-Do
 	}
 }
