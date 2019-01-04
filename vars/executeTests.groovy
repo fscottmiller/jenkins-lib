@@ -11,6 +11,7 @@ def call(environment) {
 	println("done getting stuff from config")
 	//for each functional tag specified in jenkins-config.yml for given environment
 	for(tag in fnTags) {
+		println("in for loop")
 		//creates a jenkins stage
 		stage(tag) {
 			println("In ${tag} stage")
