@@ -8,7 +8,7 @@ def call(environment) {
 	def envTag = JenkinsConfig.getEnvironmentType(environment)
 	def fnTags = JenkinsConfig.getEnvironmentStages(environment)
 	def invalidTag = 'ToDo'
-	
+	println("done getting stuff from config")
 	//for each functional tag specified in jenkins-config.yml for given environment
 	for(tag in fnTags) {
 		//creates a jenkins stage
