@@ -22,6 +22,7 @@ def call(environment) {
 			
 			//populates the features list with the dry-run results
 			node(language) {
+				println("reached dryrun node block")
 				switch(language) {
 					case 'ruby':
 						rubyDryRun(tagLogic)
