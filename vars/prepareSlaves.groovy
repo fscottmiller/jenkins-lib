@@ -23,6 +23,7 @@ def call() {
 							 // 2+ executors, and pipeline A's test job is not finished before this
 					 		 // step takes place, this will prepare the same executor twice
 					node(computerName) {
+						deleteDir()
 						gitClone(params.Repository, params.Branch)
 						if (isUnix()) {
 							sh('mkdir -p reports')
