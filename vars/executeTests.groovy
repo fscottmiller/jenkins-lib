@@ -2,7 +2,8 @@
 
 import com.qaas.pipeline.JenkinsConfig
 
-def call(environment) {     
+def call(environment) {
+	println("Starting test section")
 	def language = JenkinsConfig.getLanguage()
 	def envTag = JenkinsConfig.getEnvironmentType(environment)
 	def fnTags = JenkinsConfig.getEnvironmentStages(environment)
