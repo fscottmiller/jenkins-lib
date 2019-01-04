@@ -3,18 +3,15 @@
 import com.qaas.pipeline.JenkinsConfig
 
 def call(environment) {
-	println("Starting test section")
 	def language = JenkinsConfig.getLanguage()
 	def envTag = JenkinsConfig.getEnvironmentType(environment)
 	def fnTags = JenkinsConfig.getEnvironmentStages(environment)
 	def invalidTag = 'ToDo'
-	println("done getting stuff from config")
+	
 	//for each functional tag specified in jenkins-config.yml for given environment
 	for(tag in fnTags) {
-		println(envTag.getClass())
 		//creates a jenkins stage
 		stage(tag) {
-			println("In ${tag} stage")
 			//tagging logic for the stage
 			def tagLogic = "@${envTag} and @${tag} and not @${invalidTag}"
 			def isFailed = false
@@ -25,7 +22,6 @@ def call(environment) {
 			
 			//populates the features list with the dry-run results
 			node(language) {
-				println("reached dryrun node block")
 				switch(language) {
 					case 'ruby':
 						rubyDryRun(tagLogic)
@@ -59,24 +55,19 @@ def call(environment) {
 				//populates the builds hash with a build for each feature
 				builds[featureName] = {
 					node(language) {
-						println("Running on an agent")
 						//runs the cucumber tests and stores results
 						def buildSuccess
 						switch(language) {
 							case 'ruby':
-								echo 'Provisioning ruby env...'
 								buildSuccess = rubyExecute(tagLogic, featureFile, runName, environment)
 								break
 							case 'junit':
-								echo 'Provisioning java env...'
 								buildSuccess = javaExecute(tagLogic, featureFile, runName, environment)
 								break
 							case 'specflow':
-								echo 'Provisioning c# env...'
 								buildSuccess = cSharpExecute(tagLogic, featureFile, runName, environment)
 								break
 							case 'python':
-								echo 'Provisioning python env...'
 								buildSuccess = pythonExecute(tagLogic, featureFile, runName, environment)
 								break
 							default:
@@ -118,7 +109,6 @@ def call(environment) {
 }
 
 def rubyDryRun(tagLogic) {
-	println("Dryrun")
 	withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
 		if (isUnix()) {
 			sh(script: "cucumber --dry-run --tags '${tagLogic}' --format json --out dry-run.json")
@@ -129,12 +119,11 @@ def rubyDryRun(tagLogic) {
 }
 
 def rubyExecute(tagLogic, featureFile, runName, environment) {
-	println("Execute")
 	withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
 		if (isUnix()) {
-			return sh(script: "cucumber --tags '${tagLogic}' '${featureFile}' --format json --out 'reports/${runName}.json' TEST_ENV=${projectEnvironment}", returnStatus: true) == 0
+			return sh(script: "cucumber --tags '${tagLogic}' '${featureFile}' --format json --out 'reports/${runName}.json' TEST_ENV=${environment}", returnStatus: true) == 0
 		} else {
-			return bat(script: "cucumber --tags '${tagLogic}' '${featureFile}' --format json --out 'reports/${runName}.json' TEST_ENV=${projectEnvironment}", returnStatus: true) == 0
+			return bat(script: "cucumber --tags '${tagLogic}' '${featureFile}' --format json --out 'reports/${runName}.json' TEST_ENV=${environment}", returnStatus: true) == 0
 		}
 	}
 }

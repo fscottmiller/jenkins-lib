@@ -16,11 +16,7 @@ class JenkinsConfig implements Serializable {
 	}
 	
 	public static String[] getEnvironmentStages(String environment) {
-		String[] out = new String[dataMap['environments'][environment]['stages'].size()];
-		for (int i = 0; i < out.length; i++) {
-			out[i] = dataMap['environments'][environment]['stages'][i].toString()
-		}
-		return out
+		return dataMap['environments'][environment]['stages']
 	}
 	
 	public static String[] getEmailList() {
