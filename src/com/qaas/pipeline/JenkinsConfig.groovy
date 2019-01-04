@@ -12,13 +12,13 @@ class JenkinsConfig implements Serializable {
 	}
 	
 	public static String getEnvironmentType(String environment) {
-		return dataMap['environments'][environment].toString()
+		return dataMap['environments'][environment]['env_type']
 	}
 	
 	public static String[] getEnvironmentStages(String environment) {
-		String[] out = new String[dataMap['environments'][environment].size()];
+		String[] out = new String[dataMap['environments'][environment]['stages'].size()];
 		for (int i = 0; i < out.length; i++) {
-			out[i] = dataMap['environments'][environment][i].toString()
+			out[i] = dataMap['environments'][environment]['stages'][i].toString()
 		}
 		return out
 	}
