@@ -13,6 +13,7 @@ def call(environment) {
 	for(tag in fnTags) {
 		//creates a jenkins stage
 		stage(tag) {
+			println("In ${tag} stage")
 			//tagging logic for the stage
 			def tagLogic = "@${envTag} and @${tag} and not @${invalidTag}"
 			def isFailed = false
