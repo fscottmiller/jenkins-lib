@@ -3,7 +3,7 @@ package com.qaas.pipeline
 class JenkinsConfig implements Serializable {
 	protected static Map dataMap = [:]
 	
-	public static void init(Map dataMap) {
+	public JenkinsConfig(Map dataMap) {
 		this.dataMap = dataMap
 	}
 	
