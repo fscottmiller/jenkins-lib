@@ -8,15 +8,19 @@ class JenkinsConfig implements Serializable {
 	}
 	
 	public static String getLanguage() {
-		return dataMap['language']
+		return dataMap['language'].toString()
 	}
 	
 	public static String getEnvironmentType(String environment) {
-		return dataMap['environments'][environment]
+		return dataMap['environments'][environment].toString()
 	}
 	
 	public static String[] getEnvironmentStages(String environment) {
-		return dataMap['environments'][environment]
+		String[] out = new String[dataMap['environments'][environment].size()];
+		for (int i = 0; i < out.length; i++) {
+			out[i] = dataMap['environments'][environment][i].toString()
+		}
+		return out
 	}
 	
 	public static String[] getEmailList() {
