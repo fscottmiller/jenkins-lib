@@ -1,5 +1,5 @@
 import com.qaas.pipeline.JenkinsConfig
 
-def call() {
-	new JenkinsConfig(readYaml(file: "jenkins-config.yml"))
+def call(configLocation) {
+	new JenkinsConfig(readYaml(file: configLocation))
 }

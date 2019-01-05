@@ -63,25 +63,49 @@ def call(repository, branch) {
 }
 
 def rubyPrepare() {
-	withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
-		// To-Do
+	if (isUnix()) {
+		withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
+			bat("bundle install")
+		}
+	} else {
+		withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
 	}
 }
 
 def javaPrepare() {
-	withEnv(['Path+JAVA=C:/Ruby25-x64/bin']) {
-		// To-Do
+	if (isUnix()) {
+		withEnv(['Path+JAVA=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
+	} else {
+		withEnv(['Path+JAVA=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
 	}
 }
 
 def cSharpPrepare() {
-	withEnv(['Path+CSHARP=C:/Ruby25-x64/bin']) {
-		// To-Do
+	if (isUnix()) {
+		withEnv(['Path+CSHARP=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
+	} else {
+		withEnv(['Path+CSHARP=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
 	}
 }
 
 def pythonPrepare() {
-	withEnv(['Path+PYTHON=C:/Ruby25-x64/bin']) {
-		// To-Do
+	if (isUnix()) {
+		withEnv(['Path+PYTHON=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
+	} else {
+		withEnv(['Path+PYTHON=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
 	}
 }

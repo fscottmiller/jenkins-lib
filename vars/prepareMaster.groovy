@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(repository, branch) {
+def call(repository, branch, configLocation) {
     gitClone(repository, branch)
-	readConfig()
+	readConfig(configLocation)
 }

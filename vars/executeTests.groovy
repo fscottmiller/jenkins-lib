@@ -109,57 +109,98 @@ def call(environment) {
 }
 
 def rubyDryRun(tagLogic) {
-	withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
-		if (isUnix()) {
+	
+	if (isUnix()) {
+		withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
 			sh(script: "cucumber --dry-run --tags '${tagLogic}' --format json --out dry-run.json")
-		} else {
+		}
+	} else {
+		withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
 			bat(script: "cucumber --dry-run --tags '${tagLogic}' --format json --out dry-run.json")
 		}
 	}
 }
 
-def rubyExecute(tagLogic, featureFile, runName, environment) {
-	withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
-		if (isUnix()) {
+def rubyExecute(tagLogic, featureFile, runName, environment) {	
+	if (isUnix()) {
+		withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
 			return sh(script: "cucumber --tags '${tagLogic}' '${featureFile}' --format json --out 'reports/${runName}.json' TEST_ENV=${environment}", returnStatus: true) == 0
-		} else {
+		}
+	} else {
+		withEnv(['Path+RUBY=C:/Ruby25-x64/bin']) {
 			return bat(script: "cucumber --tags '${tagLogic}' '${featureFile}' --format json --out 'reports/${runName}.json' TEST_ENV=${environment}", returnStatus: true) == 0
 		}
 	}
 }
 
 def javaDryRun(tagLogic) {
-	withEnv(['Path+JAVA=C:/Ruby25-x64/bin']) {
-		// To-Do
+	if (isUnix()) {
+		withEnv(['Path+JAVA=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
+	} else {
+		withEnv(['Path+JAVA=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
 	}
 }
 
 def javaExecute(tagLogic, featureFile, runName, environment) {
-	withEnv(['Path+JAVA=C:/Ruby25-x64/bin']) {
-		// To-Do
+	if (isUnix()) {
+		withEnv(['Path+JAVA=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
+	} else {
+		withEnv(['Path+JAVA=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
 	}
 }
 
 def cSharpDryRun(tagLogic) {
-	withEnv(['Path+CSHARP=C:/Ruby25-x64/bin']) {
-		// To-Do
+	if (isUnix()) {
+		withEnv(['Path+CSHARP=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
+	} else {
+		withEnv(['Path+CSHARP=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
 	}
 }
 
 def cSharpExecute(tagLogic, featureFile, runName, environment) {
-	withEnv(['Path+CSHARP=C:/Ruby25-x64/bin']) {
-		// To-Do
+	if (isUnix()) {
+		withEnv(['Path+CSHARP=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
+	} else {
+		withEnv(['Path+CSHARP=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
 	}
 }
 
 def pythonDryRun(tagLogic) {
-	withEnv(['Path+PYTHON=C:/Ruby25-x64/bin']) {
-		// To-Do
+	if (isUnix()) {
+		withEnv(['Path+PYTHON=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
+	} else {
+		withEnv(['Path+PYTHON=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
 	}
 }
 
 def pythonExecute(tagLogic, featureFile, runName, environment) {
-	withEnv(['Path+PYTHON=C:/Ruby25-x64/bin']) {
-		// To-Do
+	if (isUnix()) {
+		withEnv(['Path+PYTHON=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
+	} else {
+		withEnv(['Path+PYTHON=C:/Ruby25-x64/bin']) {
+			// To-Do
+		}
 	}
 }
